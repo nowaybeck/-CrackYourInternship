@@ -1,0 +1,22 @@
+class Solution {
+public:
+    vector<int> findDuplicates(vector<int>& nums) {
+        vector<int> result;
+    
+    // Place each number in its correct position if it's not already
+    for (int i = 0; i < nums.size(); i++) {
+        while (nums[i] != nums[nums[i] - 1]) {
+            swap(nums[i], nums[nums[i] - 1]);
+        }
+    }
+    
+    // After rearrangement, if a number is not in its correct position, it's a duplicate
+    for (int i = 0; i < nums.size(); i++) {
+        if (nums[i] != i + 1) {
+            result.push_back(nums[i]);
+        }
+    }
+    
+    return result;
+    }
+};
